@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+:root {
+  --color-paper: #F5F2EC;
+  --color-ink: #1F2430;
+  --color-moss: #2F4538;
+  --color-brass: #B8915A;
+  --color-line: #E4DFD3;
+  --color-muted: #6B6558;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Editorial styling for the rendered markdown content */
+.prose {
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-links: var(--color-moss);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-quotes: var(--color-moss);
+  --tw-prose-quote-borders: var(--color-brass);
+  --tw-prose-captions: var(--color-muted);
+}
+.prose h2, .prose h3 {
+  font-family: var(--font-display);
+}
+.prose a {
+  text-decoration-color: var(--color-brass);
+  text-decoration-thickness: 1.5px;
+}
+.prose blockquote {
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+/* Hover underline used on post titles */
+.ink-underline {
+  background-image: linear-gradient(var(--color-brass), var(--color-brass));
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
+}
+.ink-underline:hover {
+  background-size: 100% 2px;
+}
