@@ -5,6 +5,7 @@ import { remark } from "remark";
 import html from "remark-html";
 
 const postsDirectory = path.join(process.cwd(), "content/posts");
+const BASE_PATH = "/blog";
 
 function calculateReadingTime(content: string) {
   const words = content.trim().split(/\s+/).length;
@@ -26,7 +27,7 @@ export function getAllPosts() {
       title: data.title as string,
       date: data.date as string,
       description: data.description as string,
-      coverImage: (data.coverImage as string) || null,
+      coverImage: data.coverImage ? `${BASE_PATH}${data.coverImage}` : null,
       coverImageFit: (data.coverImageFit as "cover" | "contain") || "contain",
       readingTime: calculateReadingTime(content),
     };
@@ -41,14 +42,14 @@ export async function getPostBySlug(slug: string) {
   const { data, content } = matter(fileContents);
 
   const processedContent = await remark().use(html).process(content);
-  const contentHtml = processedContent.toString();
+  const contentHtml = processedContent.toString().replace(/src="\//g, `src="${BASE_PATH}/`);
 
   return {
     slug,
     title: data.title as string,
     date: data.date as string,
     description: data.description as string,
-    coverImage: (data.coverImage as string) || null,
+    coverImage: data.coverImage ? `${BASE_PATH}${data.coverImage}` : null,
     coverImageFit: (data.coverImageFit as "cover" | "contain") || "contain",
     readingTime: calculateReadingTime(content),
     contentHtml,

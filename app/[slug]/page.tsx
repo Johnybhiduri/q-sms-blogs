@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getAllPosts, getPostBySlug } from "../../../lib/post";
+import { getAllPosts, getPostBySlug } from "../../lib/post";
 import { notFound } from "next/navigation";
 
 import CoverImage from "@/components/CoverImage";
@@ -51,7 +51,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       <article className="max-w-2xl mx-auto px-4 sm:px-6">
         <Link
-          href="/blog"
+          href="/"
           className="text-xs tracking-[0.15em] uppercase text-[var(--color-brass)] ink-underline inline-block mb-6 sm:mb-8"
         >
           ← Back to Journal
